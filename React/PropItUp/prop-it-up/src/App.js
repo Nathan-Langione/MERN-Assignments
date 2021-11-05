@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import PersonCard from "./components/PersonCard";
 
 function App() {
@@ -11,21 +11,18 @@ function App() {
 				age={45}
 				hairColor={"Black"}
 			/>
-
 			<PersonCard
 				firstName={"John"}
 				lastName={"Smith"}
 				age={88}
 				hairColor={"Brown"}
 			/>
-
 			<PersonCard
 				firstName={"Millard"}
 				lastName={"Fillmore"}
 				age={50}
 				hairColor={"Brown"}
 			/>
-
 			<PersonCard
 				firstName={"Maria"}
 				lastName={"Smith"}
