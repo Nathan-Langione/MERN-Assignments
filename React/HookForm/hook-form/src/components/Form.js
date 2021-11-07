@@ -64,36 +64,74 @@ const Form = (props) => {
 		}
 	};
 
+	const createUser = (e) => {
+		// we must prevent the default refresh of the browser to keep our state from being reset
+		e.preventDefault();
+		// shorthand ES6 syntax for building an object - see notes above
+		const newUser = { firstName, lastName, email, password, confPassword };
+		console.log("Welcome", newUser);
+		setFirstName("");
+		setLastName("");
+		setEmail("");
+		setPassword("");
+		setConfPassword("");
+	};
+
 	return (
 		<div>
 			{/* Form to take user input */}
-			<form onSubmit={(e) => e.preventDefault()}>
+			<form onSubmit={createUser}>
 				<div>
 					<label>First Name: </label>
-					<input type="text" onChange={handleFirstName} />
+					<input
+						type="text"
+						value={firstName}
+						onChange={handleFirstName}
+					/>
 					{firstNameError ? <p>{firstNameError}</p> : ""}
 				</div>
 				<div>
 					<label>Last Name: </label>
-					<input type="text" onChange={handleLastName} />
+					<input
+						type="text"
+						value={lastName}
+						onChange={handleLastName}
+					/>
 					{lastNameError ? <p>{lastNameError}</p> : ""}
 				</div>
 				<div>
 					<label>Email Address: </label>
-					<input type="text" onChange={handleEmail} />
+					<input type="text" value={email} onChange={handleEmail} />
 					{emailError ? <p>{emailError}</p> : ""}
 				</div>
 				<div>
-					<label>Password: </label>
-					<input type="password" onChange={handlePassword} />
-					{passwordError ? <p>{passwordError}</p> : ""}
-				</div>
-				<div>
 					<label>Confirm Password: </label>
-					<input type="password" onChange={handleConfPassword} />
+					<input
+						type="password"
+						value={confPassword}
+						onChange={handleConfPassword}
+					/>
 					{confPasswordError ? <p>{confPasswordError}</p> : ""}
 				</div>
+				<div>
+					<label>Password: </label>
+					<input
+						type="password"
+						value={password}
+						onChange={handlePassword}
+					/>
+					{passwordError ? <p>{passwordError}</p> : ""}
+				</div>
+
 				{firstNameError ? (
+					<input type="submit" value="Create User" disabled />
+				) : lastNameError ? (
+					<input type="submit" value="Create User" disabled />
+				) : emailError ? (
+					<input type="submit" value="Create User" disabled />
+				) : passwordError ? (
+					<input type="submit" value="Create User" disabled />
+				) : confPasswordError ? (
 					<input type="submit" value="Create User" disabled />
 				) : (
 					<input type="submit" value="Create User" />
@@ -106,8 +144,8 @@ const Form = (props) => {
 				<p>First Name {firstName}</p>
 				<p>Last Name {lastName}</p>
 				<p>Email {email}</p>
-				<p> Password {password}</p>
 				<p> Confirm Password {confPassword}</p>
+				<p> Password {password}</p>
 			</div>
 		</div>
 	);
