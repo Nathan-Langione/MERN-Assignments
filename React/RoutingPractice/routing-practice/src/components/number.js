@@ -1,6 +1,6 @@
 import React from "react";
 
 const Number = (props) => {
-	return <div>Number</div>;
+	return <div>{props.number}</div>;
 };
 export default Number;

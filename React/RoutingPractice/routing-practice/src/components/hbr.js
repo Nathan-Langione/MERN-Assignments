@@ -1,6 +1,6 @@
 import React from "react";
 
 const Word = (props) => {
-	return <div>{props.word}</div>;
+	return <div style={{ bgcolor: "red", color: "blue" }}>{props.word}</div>;
 };
 export default Word;
