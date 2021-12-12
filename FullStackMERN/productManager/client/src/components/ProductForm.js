@@ -9,16 +9,17 @@ const ProductForm = () => {
     const onSubmitHandler = e => {
         //prevent default behavior of the submit
         e.preventDefault();
+        const newProductData = {
+            title,
+            price,
+            desc,
+        };
         //make a post request to create a new product
-        axios.post('http://localhost:8000/api/product', {
-            title,    // this is shortcut syntax for title: title,
-            price,      // this is shortcut syntax for price: price
-            desc
-        })
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
-    }
-    //onChange to update title and price
+        axios
+            .post("http://localhost:8000/api/product", newProductData)
+            .then((response) => console.log(response))
+            .catch((err) => console.log(err));
+    };
     return (
         <form onSubmit={onSubmitHandler}>
             <p>
