@@ -16,8 +16,8 @@ const DisplayProduct = (props) => {
     return (
         <div>
             <h2>{productInfo.title}</h2>
-            <p>{productInfo.price}</p>
-            <p>{productInfo.description}</p>
+            <p>Price: {productInfo.price}</p>
+            <p>Description: {productInfo.description}</p>
         </div>
     );
 };
