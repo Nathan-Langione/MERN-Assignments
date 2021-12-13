@@ -2,7 +2,8 @@ import ProductForm from "../components/ProductForm";
 import ProductList from "../components/ProductList";
 import React, { useState } from "react";
 
-const Main = () => {
+const Main = (props) => {
+    const { handleDeleteProduct } = props;
     const [hasBeenSubmittedDummy, setHasBeenSubmittedDummy] = useState(false);
     return (
         <>
@@ -11,7 +12,11 @@ const Main = () => {
                 hasBeenSubmittedDummy={hasBeenSubmittedDummy}
             />
             <hr />
-            <ProductList hasBeenSubmittedDummy={hasBeenSubmittedDummy} />
+            <ProductList
+                hasBeenSubmittedDummy={hasBeenSubmittedDummy}
+                setHasBeenSubmittedDummy={setHasBeenSubmittedDummy}
+                handleDeleteProduct={handleDeleteProduct}
+            />
         </>
     );
 };
