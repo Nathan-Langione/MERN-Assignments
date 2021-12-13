@@ -1,42 +1,60 @@
-import React, { useState } from 'react'
-import axios from 'axios';
-const ProductForm = () => {
-    //keep track of what is being typed via useState hook
+import React, { useState } from "react";
+import axios from "axios";
+import "../App.css";
+const ProductForm = (props) => {
+    const { hasBeenSubmittedDummy, setHasBeenSubmittedDummy } = props;
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
-    const [desc, setDesc] = useState("");
-    //handler when the form is submitted
-    const onSubmitHandler = e => {
-        //prevent default behavior of the submit
+    const [description, setDescription] = useState("");
+
+    const handleSubmit = (e) => {
         e.preventDefault();
         const newProductData = {
             title,
             price,
-            desc,
+            description,
         };
-        //make a post request to create a new product
         axios
-            .post("http://localhost:8000/api/product", newProductData)
-            .then((response) => console.log(response))
+            .post("http://localhost:8000/api/products", newProductData)
+            .then((response) => {
+                console.log(response);
+                setTitle("");
+                setPrice("");
+                setDescription("");
+                setHasBeenSubmittedDummy(!hasBeenSubmittedDummy);
+            })
             .catch((err) => console.log(err));
     };
     return (
-        <form onSubmit={onSubmitHandler}>
-            <p>
-                <label>Title</label><br />
-                <input type="text" onChange={(e) => setTitle(e.target.value)} />
-            </p>
-            <p>
-                <label>Price</label><br />
-                <input type="number" step="0.01" min="0" onChange={(e) => setPrice(e.target.value)} />
-            </p>
-            <p>
-                <label>Description</label><br />
-                <input type="text" onChange={(e) => setDesc(e.target.value)} />
-            </p>
-            <input type="submit" />
+        <form onSubmit={handleSubmit}>
+            <h2>Product Form</h2>
+            <div className="form-div">
+                Title:{" "}
+                <input
+                    type="text"
+                    onChange={(e) => setTitle(e.target.value)}
+                    value={title}
+                />
+            </div>
+            <div className="form-div">
+                Price:{" "}
+                <input
+                    type="text"
+                    onChange={(e) => setPrice(e.target.value)}
+                    value={price}
+                />
+            </div>
+            <div className="form-div">
+                Description:{" "}
+                <input
+                    type="text"
+                    onChange={(e) => setDescription(e.target.value)}
+                    value={description}
+                />
+            </div>
+            <button type="submit">Submit</button>
         </form>
-    )
-}
-export default ProductForm;
+    );
+};
 
+export default ProductForm;

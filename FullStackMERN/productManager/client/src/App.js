@@ -1,14 +1,15 @@
 import "./App.css";
-import React from "react";
+import ProductForm from "./components/ProductForm";
 import { Router } from '@reach/router';
 import Main from "./views/Main";
-import Detail from './views/Detail';
+import DisplayProduct from "./components/DisplayProduct";
+
 function App() {
   return (
     <div className="App">
       <Router>
-        <Main path="/people/" />
-        <Detail path="/people/:id" />
+        <Main path="/" />
+        <DisplayProduct path="/:_id" />
       </Router>
     </div>
   );
