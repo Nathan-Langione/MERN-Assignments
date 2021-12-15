@@ -9,7 +9,6 @@ import axios from "axios";
 
 function App() {
   const handleDeleteProduct = (id) => {
-    console.log("JLKJLKJLKJLKK");
     axios
       .delete(`http://localhost:8000/api/products/${id}`)
       .then((response) => {

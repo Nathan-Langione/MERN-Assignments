@@ -33,7 +33,6 @@ const updateProduct = (req, res) => {
 const deleteRestaurant = (req, res) => {
     // find restaurant by id and delete
     Product.deleteOne({ _id: req.params.id })
-        // success <ca></ca>se sned client json response
         .then((result) => res.json(result))
         .catch((err) => res.json({ message: "Something went wrong", error: err }));
 };

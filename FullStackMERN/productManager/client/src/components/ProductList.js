@@ -20,16 +20,7 @@ const ProductList = (props) => {
             .catch((err) => console.log(err));
     }, [hasBeenSubmittedDummy]);
 
-    // const handleDeleteProduct = (id) => {
-    //   console.log("JLKJLKJLKJLKK");
-    //   axios
-    //     .delete(`http://localhost:8000/api/products/${id}`)
-    //     .then((response) => {
-    //       console.log("success deleting", response);
-    //       navigate("/");
-    //     })
-    //     .catch((err) => console.log(err));
-    // };
+
     const localHandleDeleteProduct = (id) => {
         handleDeleteProduct(id);
         setHasBeenSubmittedDummy(!hasBeenSubmittedDummy);
@@ -41,7 +32,6 @@ const ProductList = (props) => {
         <>
             <h1>All Products</h1>
             {products.map((product, index) => (
-                // <p key={index}>{product.title}</p>
                 <div className="form-div" key={index}>
                     {" "}
                     <Link to={`${product._id}`}>{product.title}</Link>
