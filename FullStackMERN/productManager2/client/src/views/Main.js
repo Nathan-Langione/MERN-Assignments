@@ -14,6 +14,8 @@ const Main = () => {
             });
     }, [])
     const removeFromDom = productId => {
+        // Lint wants !== instead of !=
+        // eslint-disable-next-line
         setProducts(products.filter(product => product._id != productId));
     }
     const createProduct = product => {
@@ -24,8 +26,14 @@ const Main = () => {
     }
     return (
         <div>
-            <ProductForm onSubmitProp={createProduct} initialTitle="" initialPrice="" initialDescription="" />
+            <h1>Add a Product</h1>
+            <ProductForm
+                onSubmitProp={createProduct}
+                initialTitle=""
+                initialPrice=""
+                initialDescription="" />
             <hr />
+            <h1>Product List</h1>
             {loaded && <ProductList products={products} removeFromDom={removeFromDom} />}
         </div>
     )

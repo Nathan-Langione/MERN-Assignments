@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { navigate } from '@reach/router';
 
 const ProductForm = (props) => {
     const { initialTitle, initialPrice, initialDescription, onSubmitProp } = props;
@@ -13,7 +13,6 @@ const ProductForm = (props) => {
 
     return (
         <form onSubmit={onSubmitHandler}>
-            <h2>Product Form</h2>
             <div className="form-div">
                 <label>Title</label><br />
                 <input

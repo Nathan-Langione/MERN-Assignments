@@ -8,6 +8,7 @@ const Detail = (props) => {
             .then(res => setProductInfo({
                 ...res.data
             }))
+        // eslint-disable-next-line
     }, [])
     return (
         <div>

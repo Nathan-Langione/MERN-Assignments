@@ -10,6 +10,8 @@ const ProductList = (props) => {
             .then(res => setProducts(res.data));
     }, [])
     const removeFromDom = productId => {
+        // Lint wants !== instead of !=
+        // eslint-disable-next-line
         setProducts(products.filter(product => product._id != productId))
     }
     return (
