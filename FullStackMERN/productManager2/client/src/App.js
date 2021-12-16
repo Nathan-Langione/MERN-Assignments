@@ -1,34 +1,17 @@
-import "./App.css";
-// eslint-disable-next-line
-import ProductForm from "./components/ProductForm";
-import { Router, navigate } from "@reach/router";
-import Main from "./views/Main";
-import DisplayProduct from "./components/DisplayProduct";
-import EditProduct from "./components/EditProduct";
-import axios from "axios";
-
+import React from 'react';
+import { Router } from '@reach/router';   /* this is new */
+import Main from './views/Main';
+import Detail from './views/Detail';
+import Update from './views/Update';
 function App() {
-  const handleDeleteProduct = (id) => {
-    axios
-      .delete(`http://localhost:8000/api/products/${id}`)
-      .then((response) => {
-        console.log("success deleting", response);
-        navigate("/");
-      })
-      .catch((err) => console.log(err));
-  };
   return (
     <div className="App">
-      <Router>
-        <Main path="/" handleDeleteProduct={handleDeleteProduct} />
-        <DisplayProduct
-          handleDeleteProduct={handleDeleteProduct}
-          path="/:_id"
-        />
-        <EditProduct path="/:id/edit" />
-      </Router>
+      <Router>                            /* this is new */
+        <Main path="/products/" />
+        <Detail path="/products/:id" />
+        <Update path="/products/:id/edit" />
+      </Router>                           /* this is new */
     </div>
   );
 }
-
 export default App;

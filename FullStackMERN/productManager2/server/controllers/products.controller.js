@@ -1,4 +1,4 @@
-const Product = require("../models/product.model");
+const Product = require("../models/products.model");
 
 const addNewProduct = (req, res) => {
     Product.create(req.body)
@@ -26,12 +26,12 @@ const updateProduct = (req, res) => {
         // this will make sure validations are still run
         runValidators: true,
     })
-        .then((updatedRestaurant) => res.json(updatedRestaurant))
+        .then((updatedProduct) => res.json(updatedProduct))
         .catch((err) => res.status(400).json(err));
 };
 
-const deleteRestaurant = (req, res) => {
-    // find restaurant by id and delete
+const deleteProduct = (req, res) => {
+    // find product by id and delete
     Product.deleteOne({ _id: req.params.id })
         .then((result) => res.json(result))
         .catch((err) => res.json({ message: "Something went wrong", error: err }));
@@ -42,5 +42,5 @@ module.exports = {
     getAllProducts,
     getProductById,
     updateProduct,
-    deleteRestaurant,
+    deleteProduct,
 };

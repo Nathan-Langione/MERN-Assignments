@@ -4,6 +4,5 @@ const ProductSchema = new mongoose.Schema({
     title: String,
     price: String,
     description: String,
-});
-const Product = mongoose.model("Product", ProductSchema);
-module.exports = Product;
+}, { timestamps: true });
+module.exports = mongoose.model('Product', ProductSchema);

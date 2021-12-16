@@ -1,50 +1,35 @@
-import { Link, navigate } from "@reach/router";
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import "../App.css";
+import React, { useEffect, useState } from 'react'
+import { Link } from '@reach/router';
+import axios from 'axios';
+import DeleteButton from './DeleteButton';
 
 const ProductList = (props) => {
-    const {
-        hasBeenSubmittedDummy,
-        setHasBeenSubmittedDummy,
-        handleDeleteProduct,
-    } = props;
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        axios
-            .get("http://localhost:8000/api/products")
-            .then((response) => {
-                console.log(response.data);
-                setProducts(response.data);
-            })
-            .catch((err) => console.log(err));
-    }, [hasBeenSubmittedDummy]);
-
-
-    const localHandleDeleteProduct = (id) => {
-        handleDeleteProduct(id);
-        setHasBeenSubmittedDummy(!hasBeenSubmittedDummy);
-    };
-    const handleNavigateToEdit = (id) => {
-        navigate(`/${id}/edit`);
-    };
+        axios.get('http://localhost:8000/api/products')
+            .then(res => setProducts(res.data));
+    }, [])
+    const removeFromDom = productId => {
+        setProducts(products.filter(product => product._id != productId))
+    }
     return (
-        <>
-            <h1>All Products</h1>
-            {products.map((product, index) => (
-                <div className="form-div" key={index}>
-                    {" "}
-                    <Link to={`${product._id}`}>{product.title}</Link>
-                    <button onClick={() => handleNavigateToEdit(product._id)}>
-                        EDIT
-                    </button>
-                    <button onClick={() => localHandleDeleteProduct(product._id)}>
-                        DELETE
-                    </button>
-                </div>
-            ))}
-        </>
-    );
-};
-
+        <div>
+            {products.map((product, idx) => {
+                return (
+                    <p key={idx}>
+                        <Link to={"/products/" + product._id}>
+                            {product.title}, {product.price}, {product.description}
+                        </Link>
+                        |
+                        <Link to={"/products/" + product._id + "/edit"}>
+                            Edit
+                        </Link>
+                        |
+                        <DeleteButton productId={product._id} successCallback={() => removeFromDom(product._id)} />
+                    </p>
+                )
+            })}
+        </div>
+    )
+}
 export default ProductList;
