@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 mongoose
-	.connect("mongodb://localhost/crmdb", {
+	.connect("mongodb://localhost/crmdb2", {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
