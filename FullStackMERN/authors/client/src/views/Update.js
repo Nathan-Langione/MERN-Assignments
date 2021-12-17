@@ -14,7 +14,6 @@ const Update = (props) => {
         axios.get('http://localhost:8000/api/authors/' + id)
             .then(res => {
                 setAuthor(res.data);
-                setOldName(author.name);
                 setLoaded(true);
                 setOldName(res.data.name);
             })

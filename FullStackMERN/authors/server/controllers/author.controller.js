@@ -1,12 +1,9 @@
 const Author = require("../models/author.model");
 
 const createAuthor = (req, res) => {
-    const { name } = request.body;
-    Author.create({
-        title: title
-    })
+    Author.create(req.body)
         .then((newAuthor) => res.json(newAuthor))
-        .catch(err => response.status(400).json(err))
+        .catch((err) => console.log(err));
 };
 
 const getAllAuthors = (req, res) => {
