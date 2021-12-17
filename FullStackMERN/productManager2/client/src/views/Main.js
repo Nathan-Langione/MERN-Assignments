@@ -32,12 +32,12 @@ const Main = () => {
     return (
         <div>
             <h1>Add a Product</h1>
-            {loaded &&
-                <ProductForm
-                    onSubmitProp={createProduct}
-                    initialTitle=""
-                    initialPrice=""
-                    initialDescription="" />}
+            {/* {loaded && */}
+            <ProductForm
+                onSubmitProp={createProduct}
+                initialTitle=""
+                initialPrice=""
+                initialDescription="" />{/* } */}
             <hr />
             <h1>Product List</h1>
             {loaded &&
