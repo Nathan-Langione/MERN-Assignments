@@ -4,7 +4,7 @@ import { navigate } from '@reach/router';
 import ProductForm from '../components/ProductForm';
 import DeleteButton from '../components/DeleteButton';
 const Update = (props) => {
-    const { id, successCallback } = props;
+    const { id } = props;
     const [product, setProduct] = useState();
     const [loaded, setLoaded] = useState(false);
     useEffect(() => {
@@ -17,7 +17,11 @@ const Update = (props) => {
     }, [])
     const updateProduct = product => {
         axios.put('http://localhost:8000/api/products/' + id, product)
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res);
+                navigate("/products");
+                console.log("here");
+            })
     }
     return (
         <div>
@@ -29,16 +33,14 @@ const Update = (props) => {
                         initialTitle={product.title}
                         initialPrice={product.price}
                         initialDescription={product.description}
-                        successCallback={() => navigate("/products")}
                     />
-
                     <DeleteButton
                         productId={product._id}
                         successCallback={() => navigate("/products")} />
                 </>
-            )
-            }
-        </div >
+            )}
+        </div>
     )
 }
 export default Update;
+

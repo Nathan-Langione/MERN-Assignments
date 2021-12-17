@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { navigate } from '@reach/router';
+// eslint-disable-next-line
+import axios from 'axios';
 
 const ProductForm = (props) => {
     const { initialTitle, initialPrice, initialDescription, onSubmitProp } = props;

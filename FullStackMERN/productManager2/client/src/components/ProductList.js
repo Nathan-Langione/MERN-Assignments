@@ -27,7 +27,9 @@ const ProductList = (props) => {
                             Edit
                         </Link>
                         |
-                        <DeleteButton productId={product._id} successCallback={() => removeFromDom(product._id)} />
+                        <DeleteButton
+                            productId={product._id}
+                            successCallback={() => removeFromDom(product._id)} />
                     </p>
                 )
             })}
