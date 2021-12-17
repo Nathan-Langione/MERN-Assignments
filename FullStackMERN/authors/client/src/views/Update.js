@@ -14,7 +14,7 @@ const Update = (props) => {
             .then(res => {
                 setAuthor(res.data);
                 setLoaded(true);
-                //setOldName(author.name);
+                setOldName(res.data.name);
             })
         // eslint-disable-next-line
     }, [loaded]);
