@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { Link } from '@reach/router';
 
-
 const AuthorForm = (props) => {
     const { initialName, onSubmitProp } = props;
     const [name, setName] = useState(initialName);
