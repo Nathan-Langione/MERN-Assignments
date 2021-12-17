@@ -3,7 +3,7 @@ const Author = require("../models/author.model");
 const createAuthor = (req, res) => {
     Author.create(req.body)
         .then((newAuthor) => res.json(newAuthor))
-        .catch((err) => console.log(err));
+        .catch(err => res.status(400).json(err))
 };
 
 const getAllAuthors = (req, res) => {
@@ -27,7 +27,7 @@ const updateAuthor = (req, res) => {
         runValidators: true,
     })
         .then((updatedAuthor) => res.json(updatedAuthor))
-        .catch((err) => res.status(400).json(err));
+        .catch(err => res.status(400).json(err))
 };
 
 const deleteAuthor = (req, res) => {

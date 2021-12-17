@@ -9,6 +9,7 @@ const Update = (props) => {
     const [author, setAuthor] = useState();
     const [loaded, setLoaded] = useState(false);
     const [oldName, setOldName] = useState();
+    const [errors, setErrors] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/authors/' + id)
@@ -27,6 +28,15 @@ const Update = (props) => {
                 console.log("The author " + oldName + " has been updated to " + author.name);
                 navigate("/");
             })
+            .catch(err => {
+                const errorResponse = err.response.data.errors; // Get the errors from err.response.data
+                const errorArr = []; // Define a temp error array to push the messages in
+                for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                    errorArr.push(errorResponse[key].message)
+                }
+                // Set Errors
+                setErrors(errorArr);
+            })
     }
     return (
         <div>
@@ -41,6 +51,7 @@ const Update = (props) => {
                         onSubmitProp={updateAuthor}
                         initialName={author.name}
                     />
+                    {errors.map((err, index) => <p key={index}>{err}</p>)}
                 </>
             )}
         </div>
