@@ -16,9 +16,10 @@ const Update = (props) => {
                 setAuthor(res.data);
                 setOldName(author.name);
                 setLoaded(true);
+                setOldName(res.data.name);
             })
         // eslint-disable-next-line
-    }, [])
+    }, [loaded]);
 
     const updateAuthor = author => {
         axios.put('http://localhost:8000/api/authors/' + id, author)
@@ -26,7 +27,6 @@ const Update = (props) => {
                 console.log(res);
                 console.log("The author " + oldName + " has been updated to " + author.name);
                 navigate("/");
-
             })
     }
     return (
@@ -37,10 +37,12 @@ const Update = (props) => {
             </Link>
             <h1>Edit this author:</h1>
             {loaded && (
-                <AuthorForm
-                    onSubmitProp={updateAuthor}
-                    initialName={author.name}
-                />
+                <>
+                    <AuthorForm
+                        onSubmitProp={updateAuthor}
+                        initialName={author.name}
+                    />
+                </>
             )}
         </div>
     )
