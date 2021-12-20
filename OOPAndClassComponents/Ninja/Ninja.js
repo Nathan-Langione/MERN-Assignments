@@ -27,11 +27,31 @@ class Ninja {
     }
 }
 
+class Sensei extends Ninja {
+    constructor(name, wisdom = 10) {
+        super(name, 200, 10, 10);
+        this.wisdom = wisdom;
+    }
+
+    showStats() {
+        console.log(`${this.name} has ${this.health} health, ${this.speed} speed, ${this.strength} strength, and ${this.wisdom} wisdom!`)
+        return this;
+    }
+
+    speakWisdom() {
+        this.drinkSake();
+        console.log("What one programmer can do in one month, two programmers can do in two months");
+        return this;
+    }
+}
+
+/*
 const ninja1 = new Ninja("Hyabusa", 100);
 ninja1.sayName().showStats().drinkSake().drinkSake().showStats()
 
 const ninja2 = new Ninja("Billy", 15, 5, 7);
 ninja2.sayName().showStats().drinkSake();
+ */
+const sensei1 = new Sensei("Master Splinter");
 
-
-
+sensei1.speakWisdom().showStats();
