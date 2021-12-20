@@ -8,15 +8,18 @@ class User {
     // class deposit method/function
     makeDeposit(amount) {// takes a parameter this is the amount of the deposit
         this.accountBalance += amount;   // the specific user's account increases by the amount of the value received
+        return this;
     }
 
     // class deposit method/function
     makeWithdrawal(amount) {// takes a parameter this is the amount of the deposit
         this.accountBalance -= amount;   // the specific user's account increases by the amount of the value received
+        return this;
     }
 
     displayBalance() {
         console.log("The current balance for " + this.name + " is: $" + this.accountBalance)
+        return this;
     }
 
     transferMoney(otherUser, amount) {
@@ -29,6 +32,7 @@ class User {
             otherUser.accountBalance += amount
             console.log("Transfer completed successfully!")
         }
+        return this;
     }
 }
 
@@ -36,24 +40,12 @@ const user1 = new User("Tom Terrific", "tt@python.com");
 const user2 = new User("Monty Python", "monty@python.com");
 const user3 = new User("Fred Smith", "fs@python.com");
 
-user1.makeDeposit(100)
-user1.makeDeposit(50)
-user1.makeDeposit(20)
-user1.makeWithdrawal(100)
-user1.displayBalance()
+user1.makeDeposit(100).makeDeposit(50).makeDeposit(20).makeWithdrawal(100).displayBalance()
 
-user2.makeDeposit(200)
-user2.makeDeposit(100)
-user2.makeWithdrawal(25)
-user2.makeWithdrawal(80)
-user2.displayBalance()
+user2.makeDeposit(200).makeDeposit(100).makeWithdrawal(25).makeWithdrawal(80).displayBalance()
 
-user3.makeDeposit(500)
-user3.makeWithdrawal(25)
-user3.makeWithdrawal(175)
-user3.makeWithdrawal(100)
-user3.displayBalance()
+user3.makeDeposit(500).makeWithdrawal(25).makeWithdrawal(175).makeWithdrawal(100).displayBalance()
 
-user1.transferMoney(user3, 25)
-user1.displayBalance()
+
+user1.transferMoney(user3, 25).displayBalance()
 user3.displayBalance()
