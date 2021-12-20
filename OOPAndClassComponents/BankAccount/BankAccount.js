@@ -1,7 +1,7 @@
 class BankAccount {
     constructor(intRate, balance = 0) {
-        this.interest = intRate
-        this.accountBalance = balance
+        this.interest = intRate;
+        this.accountBalance = balance;
     }
 
     deposit(amount) {
@@ -11,18 +11,25 @@ class BankAccount {
 
     withdraw(amount) {
         this.accountBalance -= amount;
+        if (this.accountBalance < 0) {
+            console.log("Insufficient funds: Charging a $5 fee");
+            this.accountBalance -= 5;
+        }
         return this;
     }
 
     displayAccountInfo() {
-        console.log("The current balance is: $" + this.accountBalance)
+        console.log(
+            'The current balance is: $' + this.accountBalance,
+            'The current interest rate is: ' + this.interest
+        );
         return this;
     }
 
     yieldInterest() {
         if (this.accountBalance > 0) {
-            const foo = this.accountBalance * this.interest
-            this.accountBalance += foo
+            const foo = this.accountBalance * this.interest;
+            this.accountBalance += foo;
         }
         else {
             console.log("You are broke!")
