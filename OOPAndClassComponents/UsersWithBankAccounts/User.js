@@ -2,7 +2,7 @@ class User {
     constructor(name, email) {
         this.name = name;
         this.email = email;
-        this.account = new BankAccount(intRate = 0.02, balance = 0);
+        this.account = new BankAccount();
     }
 
     // class deposit method/function
@@ -22,7 +22,7 @@ class User {
         return this;
     }
 
-    /* transferMoney(otherUser, amount) {
+    transferMoney(otherUser, amount) {
         if (amount > this.account.balance) {
             console.log("Insufficient funds for transfer! Balance: $ " + this.account.balance + "Requested funds: $" + amount)
         }
@@ -33,20 +33,18 @@ class User {
             console.log("Transfer completed successfully!")
         }
         return this;
-    } */
+    }
 }
 
 class BankAccount {
-    constructor(intRate, balance) {
+    constructor(intRate = 0.08, balance = 0) {
         this.balance = balance;
         this.intRate = intRate;
     }
-
     deposit(amount) {
         this.balance += amount;
         return this;
     }
-
     withdraw(amount) {
         this.balance -= amount;
         if (this.balance < 0) {
@@ -55,27 +53,20 @@ class BankAccount {
         }
         return this;
     }
-
-    yieldintRate() {
-        if (this.balance > 0) {
-            const foo = this.balance * this.intRate;
-            this.balance += foo;
-        }
-        else {
-            console.log("You are broke!")
-        }
+    displayAccountInfo() {
+        console.log(
+            `Current Balance: $${this.balance}, Interest Rate: ${this.intRate}`
+        );
         return this;
     }
-    /*     displayAccountInfo() {
-            console.log(
-                'The current balance is: $' + this.balance,
-                'The current intRate rate is: ' + this.intRate
-            );
-            return this;
-        } */
+    yieldInterest() {
+        this.balance += this.balance * this.intRate;
+        return this;
+    }
 }
+
 const user1 = new User("Tom Terrific", "tt@python.com");
-/* const user2 = new User("Monty Python", "monty@python.com");
+const user2 = new User("Monty Python", "monty@python.com");
 const user3 = new User("Fred Smith", "fs@python.com");
 
 user1.makeDeposit(100).makeDeposit(50).makeDeposit(20).makeWithdrawal(100).displayUserBalance()
@@ -86,4 +77,4 @@ user3.makeDeposit(500).makeWithdrawal(25).makeWithdrawal(175).makeWithdrawal(100
 
 
 user1.transferMoney(user3, 25).displayUserBalance()
-user3.displayUserBalance() */
+user3.displayUserBalance()
